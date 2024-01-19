@@ -27,7 +27,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springkit.kits.test.mapper.WebQueryTestEntity;
 import org.springkit.kits.test.mapper.WebQueryTestMapper;
-import org.springkit.mybatisplus.wquery.WebQuery;
+import org.springkit.mybatisplus.mvcfast.query.WebQuery;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;

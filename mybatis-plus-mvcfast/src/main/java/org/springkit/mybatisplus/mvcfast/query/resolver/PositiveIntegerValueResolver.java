@@ -13,9 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.springkit.mybatisplus.wquery.resolver;
+package org.springkit.mybatisplus.mvcfast.query.resolver;
 
-import org.springkit.mybatisplus.wquery.QueryValueResolver;
+import org.springkit.mybatisplus.mvcfast.query.QueryValueResolver;
 
 public class PositiveIntegerValueResolver implements QueryValueResolver {
 

@@ -13,11 +13,32 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.springkit.mybatisplus.wquery;
+package org.springkit.mybatisplus.mvcfast.query.resolver;
 
-/**
- * define a resolver what value of parameter from http-query
- */
-public interface QueryValueResolver {
-	public String resolve(String name, String original);
+import org.springkit.mybatisplus.mvcfast.query.QueryValueResolver;
+
+public class NotNegativeIntegerValueResolver implements QueryValueResolver {
+
+	@Override
+	public String resolve(String name, String original) {
+		boolean isNumber = false;
+		if (original != null) {
+			isNumber = original.matches("[\\-\\d]+");
+		}
+		if (isNumber) {
+			Long v = null;
+			try {
+				v = Long.parseLong(original);
+			} catch (Exception e) {
+			}
+			if (v != null && v.longValue() >= 0) {
+				return String.valueOf(v);
+			} else {
+				return null;
+			}
+		} else {
+			return null;
+		}
+	}
+
 }

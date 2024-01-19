@@ -5,7 +5,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>org.springkit.kits</groupId>
-	<artifactId>mybatis-plus-web-query</artifactId>
+	<artifactId>mybatis-plus-mvcfast</artifactId>
 	<version>0.0.1</version>
 
 	<properties>

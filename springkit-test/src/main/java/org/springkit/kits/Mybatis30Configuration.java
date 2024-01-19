@@ -23,7 +23,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * if less spring-boot-autoconfigure-2.7.x and org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.0+
+ * if use spring-boot-autoconfigure-2.6.x and org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.x
  * the org.mybatis.spring.boot.autoconfigure.MybatisAutoConfiguration can't auto configure, so must defined it. 
  */
 @Configuration

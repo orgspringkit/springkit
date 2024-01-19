@@ -1,0 +1,1 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=org.springkit.mybatisplus.mvcfast.query.WebQueryConfiguration

@@ -99,10 +99,10 @@
 		</dependency>
 		<dependency>
 			<groupId>org.springkit.kits</groupId>
-			<artifactId>mybatis-plus-web-query</artifactId>
+			<artifactId>mybatis-plus-mvcfast</artifactId>
 			<version>0.0.1</version>
 			<scope>system</scope>
-			<systemPath>${project.basedir}/../mybatis-plus-web-query/target/mybatis-plus-web-query-0.0.1.jar</systemPath>
+			<systemPath>${project.basedir}/../mybatis-plus-mvcfast/target/mybatis-plus-mvcfast-0.0.1.jar</systemPath>
 		</dependency>
 
 		<!-- database-->

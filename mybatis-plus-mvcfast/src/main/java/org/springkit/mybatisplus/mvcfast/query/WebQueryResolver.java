@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.springkit.mybatisplus.wquery;
+package org.springkit.mybatisplus.mvcfast.query;
 
 import java.util.Arrays;
 import java.util.Optional;
@@ -27,8 +27,8 @@ import org.springframework.web.bind.support.WebDataBinderFactory;
 import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.method.support.ModelAndViewContainer;
-import org.springkit.mybatisplus.wquery.WebQueryParamParser.LambdaQueryWrapperParser;
-import org.springkit.mybatisplus.wquery.WebQueryParamParser.QueryWrapperParser;
+import org.springkit.mybatisplus.mvcfast.query.WebQueryParamParser.LambdaQueryWrapperParser;
+import org.springkit.mybatisplus.mvcfast.query.WebQueryParamParser.QueryWrapperParser;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
