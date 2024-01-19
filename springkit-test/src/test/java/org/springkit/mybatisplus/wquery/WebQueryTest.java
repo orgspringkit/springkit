@@ -20,10 +20,10 @@ import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext;
 import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springkit.kits.test.SpringKitTestStart;
+import org.springkit.kits.SpringKitWithMybatisPlusStart;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT, classes = { SpringKitTestStart.class })
+@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT, classes = { SpringKitWithMybatisPlusStart.class })
 public class WebQueryTest {
 
 	@Resource
@@ -163,6 +163,53 @@ public class WebQueryTest {
 			System.out.println(resp);
 
 			Assert.assertEquals("3, test3, test3, testholder3, null\n", resp);
+		}
+	}
+
+	@Test
+	public void testQueryWrapperPaging() throws IOException, InterruptedException {
+
+		int port = server.getWebServer().getPort();
+		String path = server.getServletContext().getContextPath();
+
+		URL url = new URL("http://127.0.0.1:" + port + path + "/test/query-paging?page=2&size=2");
+
+		URLConnection conn = url.openConnection();
+
+		if (conn instanceof HttpURLConnection) {
+			HttpURLConnection httpConn = (HttpURLConnection) conn;
+
+			ByteArrayOutputStream out = new ByteArrayOutputStream();
+			try {
+
+				httpConn.setDoInput(true);
+				httpConn.setDoOutput(true);
+				httpConn.connect();
+
+				try (InputStream in = httpConn.getInputStream()) {
+					if (in != null) {
+						while (in.available() > 0) {
+							byte[] buf = new byte[1024];
+							int l = in.read(buf);
+
+							out.write(buf, 0, l);
+						}
+					}
+				}
+
+			} finally {
+				httpConn.disconnect();
+			}
+
+			String resp = out.toString(StandardCharsets.UTF_8.name());
+
+			System.out.println(resp);
+
+			String except = "";
+			except += "3, test3, test3, testholder3, null\n";
+			except += "4, test4, test4, testholder4, null\n";
+
+			Assert.assertEquals(except, resp);
 		}
 	}
 }

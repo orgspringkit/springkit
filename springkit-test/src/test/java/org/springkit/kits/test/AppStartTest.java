@@ -5,9 +5,10 @@ import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springkit.kits.SpringKitWithMybatisStart;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(webEnvironment = WebEnvironment.DEFINED_PORT, classes = { SpringKitTestStart.class })
+@SpringBootTest(webEnvironment = WebEnvironment.DEFINED_PORT, classes = { SpringKitWithMybatisStart.class })
 public class AppStartTest {
 	
 	@Test

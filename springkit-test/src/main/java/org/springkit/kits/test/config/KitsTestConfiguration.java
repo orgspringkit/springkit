@@ -46,18 +46,9 @@ public class KitsTestConfiguration implements ApplicationListener<ContextRefresh
 
 		try (Connection conn = dataSource.getConnection()) {
 			ScriptUtils.executeSqlScript(conn, initSql);
+
 			conn.commit();
 		}
-	}
-
-	@Bean
-	// @ConditionalOnMissingBean(type = {
-	// "com.baomidou.mybatisplus.extension.spring.MybatisSqlSessionFactoryBean" })
-	@ConditionalOnMissingClass("com.baomidou.mybatisplus.extension.spring.MybatisSqlSessionFactoryBean")
-	public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception {
-		SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
-		sessionFactory.setDataSource(dataSource);
-		return sessionFactory.getObject();
 	}
 
 }

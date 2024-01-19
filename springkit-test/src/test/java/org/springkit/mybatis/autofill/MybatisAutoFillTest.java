@@ -17,17 +17,15 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.context.ApplicationContext;
 import org.springframework.jdbc.datasource.init.ScriptException;
-import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springkit.kits.test.SpringKitTestStart;
+import org.springkit.kits.SpringKitWithMybatisStart;
 import org.springkit.kits.test.mapper.AutoFillTestEntity;
 import org.springkit.kits.test.mapper.MockAutoFillTestMapper;
 import org.springkit.mybatis.autofill.CurrentContextHolder.Supplier;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(webEnvironment = WebEnvironment.NONE, classes = { SpringKitTestStart.class })
-@ActiveProfiles("mybatis")
-public class AutoFillTest {
+@SpringBootTest(webEnvironment = WebEnvironment.NONE, classes = { SpringKitWithMybatisStart.class })
+public class MybatisAutoFillTest {
 
 	@Resource
 	private ApplicationContext ctx;

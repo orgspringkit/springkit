@@ -12,13 +12,13 @@ import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springkit.kits.test.SpringKitTestStart;
+import org.springkit.kits.SpringKitWithMybatisStart;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @RunWith(SpringRunner.class)
-@SpringBootTest(webEnvironment = WebEnvironment.NONE, classes = { SpringKitTestStart.class })
+@SpringBootTest(webEnvironment = WebEnvironment.NONE, classes = { SpringKitWithMybatisStart.class })
 @ActiveProfiles("mockjdbc")
 public class JdbcStrictConnTest {
 

@@ -16,6 +16,7 @@ import org.springkit.mybatisplus.wquery.WebQuery;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
 @RequestMapping("/test")
 @RestController
@@ -51,6 +52,25 @@ public class TestController {
 		PrintWriter pw = new PrintWriter(sw);
 
 		for (WebQueryTestEntity e : list) {
+			pw.println(String.format("%s, %s, %s, %s, %s", e.getId(), e.getCol1(), e.getCol2(), e.getCreator(), e.getUpdater()));
+			pw.flush();
+		}
+
+		return sw.toString();
+	}
+
+	@GetMapping("/query-paging")
+	@WebQuery(querys = { "id" })
+	public String testWebQueryPaging(Page<WebQueryTestEntity> paging, QueryWrapper<WebQueryTestEntity> query) {
+
+		Page<WebQueryTestEntity> list = webQueryTestMapper.selectPage(paging, query);
+
+		System.out.println("total=" + list.getTotal());
+
+		StringWriter sw = new StringWriter();
+		PrintWriter pw = new PrintWriter(sw);
+
+		for (WebQueryTestEntity e : list.getRecords()) {
 			pw.println(String.format("%s, %s, %s, %s, %s", e.getId(), e.getCol1(), e.getCol2(), e.getCreator(), e.getUpdater()));
 			pw.flush();
 		}
