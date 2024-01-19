@@ -19,7 +19,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = WebEnvironment.NONE, classes = { SpringKitTestStart.class })
-@ActiveProfiles("jdbcstrict")
+@ActiveProfiles("mockjdbc")
 public class JdbcStrictConnTest {
 
 	@Before

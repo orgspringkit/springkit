@@ -84,14 +84,22 @@ public class WebQueryResolver implements HandlerMethodArgumentResolver, Disposab
 
 	}
 
+	private boolean matchClazz(Class<?> parseClazz, Class<?> type) {
+		if (parseClazz.isInterface()) {
+			return parseClazz.isAssignableFrom(type);
+		} else {
+			return parseClazz == type || parseClazz.isAssignableFrom(type);
+		}
+	}
+
 	@Override
 	public Object resolveArgument(MethodParameter parameter, ModelAndViewContainer mavContainer, NativeWebRequest webRequest, WebDataBinderFactory binderFactory) throws Exception {
 
-		if (parameter.getParameterType() == LambdaQueryWrapper.class) {
+		if (this.matchClazz(LambdaQueryWrapper.class, parameter.getParameterType())) {
 			return convertQueryByLambda(parameter, webRequest);
-		} else if (parameter.getParameterType() == QueryWrapper.class) {
+		} else if (this.matchClazz(QueryWrapper.class, parameter.getParameterType())) {
 			return convertQuery(parameter, webRequest);
-		} else if (IPage.class.isAssignableFrom(parameter.getParameterType())) {
+		} else if (this.matchClazz(IPage.class, parameter.getParameterType())) {
 			return convertPagination(parameter, webRequest);
 		} else {
 			return null;
@@ -125,7 +133,7 @@ public class WebQueryResolver implements HandlerMethodArgumentResolver, Disposab
 
 	private QueryWrapper<?> convertQuery(MethodParameter parameter, NativeWebRequest webRequest) {
 		QueryWrapper<?> query = new QueryWrapper<>();
-		
+
 		this.parser.convertQuery(query, parameter, webRequest);
 		return query;
 	}

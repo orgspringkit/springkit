@@ -15,6 +15,7 @@ import org.springkit.kits.test.mapper.WebQueryTestMapper;
 import org.springkit.mybatisplus.wquery.WebQuery;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 
 @RequestMapping("/test")
 @RestController
@@ -23,9 +24,26 @@ public class TestController {
 	@Resource
 	private WebQueryTestMapper webQueryTestMapper;
 
-	@GetMapping("/webquery1")
+	@GetMapping("/lambdaquery")
 	@WebQuery(querys = { "id", "col1" })
 	public String testWebQuery(LambdaQueryWrapper<WebQueryTestEntity> query, HttpServletRequest request) {
+
+		List<WebQueryTestEntity> list = webQueryTestMapper.selectList(query);
+
+		StringWriter sw = new StringWriter();
+		PrintWriter pw = new PrintWriter(sw);
+
+		for (WebQueryTestEntity e : list) {
+			pw.println(String.format("%s, %s, %s, %s, %s", e.getId(), e.getCol1(), e.getCol2(), e.getCreator(), e.getUpdater()));
+			pw.flush();
+		}
+
+		return sw.toString();
+	}
+
+	@GetMapping("/query")
+	@WebQuery(querys = { "id" })
+	public String testWebQuery(QueryWrapper<WebQueryTestEntity> query, HttpServletRequest request) {
 
 		List<WebQueryTestEntity> list = webQueryTestMapper.selectList(query);
 

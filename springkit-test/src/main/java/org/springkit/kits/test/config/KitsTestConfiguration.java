@@ -14,7 +14,9 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.event.ContextRefreshedEvent;
+import org.springframework.core.env.Environment;
 import org.springframework.jdbc.datasource.init.ScriptException;
+import org.springframework.jdbc.datasource.init.ScriptUtils;
 
 @Configuration
 public class KitsTestConfiguration implements ApplicationListener<ContextRefreshedEvent> {
@@ -22,21 +24,29 @@ public class KitsTestConfiguration implements ApplicationListener<ContextRefresh
 	@Resource
 	private DataSource dataSource;
 
+	@Resource
+	private Environment env;
+
 	@Override
 	public void onApplicationEvent(ContextRefreshedEvent event) {
 		try {
-			initDatabase(event.getApplicationContext());
+
+			String jdbcDriver = env.getProperty("spring.datasource.type");
+
+			if (jdbcDriver != null && jdbcDriver.toLowerCase().indexOf("mock") == -1) {
+				initDatabase(event.getApplicationContext());
+			}
 		} catch (ScriptException | SQLException e) {
 			e.printStackTrace();
 		}
 	}
 
 	private void initDatabase(ApplicationContext ctx) throws ScriptException, SQLException {
-		org.springframework.core.io.Resource initSql = ctx.getResource("classpath:h2/mybatisplus-init.sql");
+		org.springframework.core.io.Resource initSql = ctx.getResource("classpath:h2/h2-init.sql");
 
 		try (Connection conn = dataSource.getConnection()) {
-			// ScriptUtils.executeSqlScript(conn, initSql);
-			// conn.commit();
+			ScriptUtils.executeSqlScript(conn, initSql);
+			conn.commit();
 		}
 	}
 

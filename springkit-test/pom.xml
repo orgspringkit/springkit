@@ -5,7 +5,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>org.springkit.kits</groupId>
-	<artifactId>kits-test</artifactId>
+	<artifactId>springkit-test</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 
 	<properties>

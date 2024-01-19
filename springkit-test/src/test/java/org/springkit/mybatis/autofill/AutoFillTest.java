@@ -1,6 +1,5 @@
 package org.springkit.mybatis.autofill;
 
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -18,7 +17,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.context.ApplicationContext;
 import org.springframework.jdbc.datasource.init.ScriptException;
-import org.springframework.jdbc.datasource.init.ScriptUtils;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springkit.kits.test.SpringKitTestStart;
@@ -44,12 +42,8 @@ public class AutoFillTest {
 
 	private String holderId;
 
-	
-
 	@Before
 	public void setUp() throws ScriptException, SQLException {
-		this.initDatabase();
-
 		holderId = "h" + dtf.format(LocalDateTime.now());
 		CurrentContextHolder.setSupplier(new Supplier() {
 			@Override
@@ -57,15 +51,6 @@ public class AutoFillTest {
 				return holderId;
 			}
 		});
-	}
-
-	private void initDatabase() throws ScriptException, SQLException {
-		org.springframework.core.io.Resource initSql = ctx.getResource("classpath:h2/mybatis-autofill-init.sql");
-
-		try (Connection conn = dataSource.getConnection()) {
-			ScriptUtils.executeSqlScript(conn, initSql);
-			conn.commit();
-		}
 	}
 
 	@Test
