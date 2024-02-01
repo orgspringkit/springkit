@@ -25,6 +25,7 @@ configuration in outside > configuration in this jar
 
 ### The Configuration File Describes
 - cors.allow-credentials
+
   The item only set be `true|false`(insensitive). if it is be set, it will add `Access-Control-Allow-Credentials: true|false` into response headers.
   
   Usually, the request not contains a Cookie and Http Authentication Info by default. When it's true, the server can accept but in xhr script,  must be added as follow:
@@ -35,15 +36,18 @@ configuration in outside > configuration in this jar
   ```
   
 - cors.hosts
+
   It uses a comma `,`, to separate multiple values. Its purpose is to indicate which cross-origin requests are allowed by `Origin` header in request.
   Example, `cors.hosts=http://192.168.1.1,http://192.168.1.2` means only two sites can send CORS request.
   ==Warning, it's all match and distinguishes between HTTP and HTTPS （the last no write '/'）==
 
 - cors.url
+
   Which url should be effected.   When using prefix mode match,  it will be written as `/prefix/*`.  ==no contain context-path==
   If null or `/*`, it means match any url.
 
 - cors.max-age
+
   The item is CORS effective time. 86400 is default value.
 
 #### Internal Configuration

@@ -84,7 +84,7 @@ public class CorsResponseFilter implements Filter {
 
 				response.addIntHeader("Access-Control-Max-Age", ifNullDefault(config.maxAge, 86400, Integer.class));
 
-				if (config.allowCredentials != null) {
+				if (config.allowCredentials != null && config.allowCredentials) {
 					response.addHeader("Access-Control-Allow-Credentials", String.valueOf(config.allowCredentials));
 				}
 			}
