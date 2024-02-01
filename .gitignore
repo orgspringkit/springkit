@@ -7,7 +7,6 @@
 /target/
 target/
 *.class
-*.jar
 bin/
 gen/
 .classpath
@@ -30,7 +29,6 @@ gen/
 .mtj.tmp/
 
 # Package Files #
-*.jar
 *.war
 *.nar
 *.ear
