@@ -1,7 +1,7 @@
 ## Introduction
 The document describes a component for handling cross-origin resource sharing (CORS) in a Spring Boot environment, highlighting the simplicity of enabling CORS by merely incorporating a specific JAR package into the project.
 
-## How to Import
+## How To Import
 
 ### Maven
 Add into `pom.xml`, as follow:
@@ -13,7 +13,7 @@ Add into `pom.xml`, as follow:
 <dependency>
 ```
 
-## Configuration
+## How To Configurate
 By default, cross-origin requests are allowed from any source. To impose restrictions, you can add configurations in the src/main/resources/cors.properties file.
 
 ```bash
@@ -47,14 +47,17 @@ configuration in outside > configuration in this jar
   The item is CORS effective time. 86400 is default value.
 
 #### Internal Configuration
-There is internal configurations as:
+It is always effective, and others can override it
+The content as:
 ```bash
 cors.allow-credentials=true
 cors.url=/*
 ```
 
+## How To Use
+
 ### SpringBoot Framework
-No any configuration in springboot framework.
+No any opertaion.
 
 ### Spring Framework
 In `src/main/resource/webapp/WEB-INF/web.xml`, add Filter as follow:
