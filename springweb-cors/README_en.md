@@ -60,7 +60,7 @@ cors.url=/*
 No any opertaion.
 
 ### Spring Framework
-In `src/main/resource/webapp/WEB-INF/web.xml`, add Filter as follow:
+In `src/main/resources/webapp/WEB-INF/web.xml`, add Filter as follow:
 
 ```xml
 <filter>
