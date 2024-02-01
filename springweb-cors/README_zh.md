@@ -51,7 +51,7 @@ cors.url=/*
 springboot一般下不需要配置
 
 ### spring项目
-在`src/main/resource/webapp/WEB-INF/web.xml`中添加Filter
+在`src/main/resources/webapp/WEB-INF/web.xml`中添加Filter
 
 ```xml
 <filter>
