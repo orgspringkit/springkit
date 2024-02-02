@@ -1,10 +1,11 @@
 ## Introduction
-The document describes a component for handling cross-origin resource sharing (CORS) in a Spring Boot environment, highlighting the simplicity of enabling CORS by merely incorporating a specific JAR package into the project.
+
+The jar is very quick and easy to use. By doing nothing other than importing it, you can enable the CORS functionality.
 
 ## How To Import
 
 ### Maven
-Add into `pom.xml`, as follow:
+Add the following to your `pom.xml`:
 ```xml
 <dependency>
   <groupId>org.springkit.kits</groupId>
@@ -13,7 +14,7 @@ Add into `pom.xml`, as follow:
 <dependency>
 ```
 
-## How To Configurate
+## How To Configure
 By default, cross-origin requests are allowed from any source. To impose restrictions, you can add configurations in the src/main/resources/cors.properties file.
 
 ```bash
@@ -26,9 +27,9 @@ configuration in outside > configuration in this jar
 ### The Configuration File Describes
 - cors.allow-credentials
 
-  The item only set be `true|false`(insensitive). if it is be set, it will add `Access-Control-Allow-Credentials: true|false` into response headers.
+  The item can only be set to `true` or `false` (case-insensitive). If it is set, `Access-Control-Allow-Credentials: true` or `false` will be added to the response headers.
   
-  Usually, the request not contains a Cookie and Http Authentication Info by default. When it's true, the server can accept but in xhr script,  must be added as follow:
+  Usually, requests do not contain Cookies or HTTP Authentication Information by default. When this setting is enabled, the server can accept them, but the following must be added in the XHR script:
 
   ```
   var xhr = new XMLHttpRequest();
@@ -37,9 +38,10 @@ configuration in outside > configuration in this jar
   
 - cors.hosts
 
-  It uses a comma `,`, to separate multiple values. Its purpose is to indicate which cross-origin requests are allowed by `Origin` header in request.
-  Example, `cors.hosts=http://192.168.1.1,http://192.168.1.2` means only two sites can send CORS request.
-  ==Warning, it's all match and distinguishes between HTTP and HTTPS （the last no write '/'）==
+  It uses a comma `,` to separate multiple values. The purpose is to specify which cross-origin requests are allowed, based on the `Origin` header in the request.
+  
+ For example, `cors.hosts=http://192.168.1.1,http://192.168.1.2` means that only two sites can send CORS requests.
+  ==Warning: it matches all URLs and distinguishes between HTTP and HTTPS (the trailing slash `/` is not included).==
 
 - cors.url
 
@@ -48,11 +50,11 @@ configuration in outside > configuration in this jar
 
 - cors.max-age
 
-  The item is CORS effective time. 86400 is default value.
+  The item represents the CORS effective time, with 86400 being the default value.
 
 #### Internal Configuration
-It is always effective, and others can override it
-The content as:
+It is always effective, but it can be overridden by others.
+The content is:
 ```bash
 cors.allow-credentials=true
 cors.url=/*
@@ -61,10 +63,10 @@ cors.url=/*
 ## How To Use
 
 ### SpringBoot Framework
-No any opertaion.
+No operations.
 
 ### Spring Framework
-In `src/main/resources/webapp/WEB-INF/web.xml`, add Filter as follow:
+In `src/main/resources/webapp/WEB-INF/web.xml`, add a Filter as follows:
 
 ```xml
 <filter>
